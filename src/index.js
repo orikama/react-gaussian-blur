@@ -174,7 +174,10 @@ class WebGL {
     _getUniformLocations() {
         const uniformNames = ['uMatrix', 'uTexture', 'uResolution', 'uDirection', 'uRadius', 'uStrength', 'uFlip'];
 
-        let dictionary = uniformNames.reduce((map, name) => (map[name] = this.gl.getUniformLocation(this.shaderProgram, name), map), {});
+        const dictionary = {};
+        uniformNames.forEach(name => {
+            dictionary[name] = this.gl.getUniformLocation(this.shaderProgram, name);
+        });
 
         return dictionary;
     }
